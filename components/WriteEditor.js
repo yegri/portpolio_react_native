@@ -5,7 +5,7 @@ function WriteEditor({title, body, onChangeTitle, onChangeBody}) {
   const bodyRef = useRef();
 
   return (
-    <View style={StyleSheet.block}>
+    <View style={styles.block}>
       <TextInput
         placeholder="제목을 입력하세요"
         style={styles.titleInput}

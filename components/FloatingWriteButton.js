@@ -1,17 +1,43 @@
 import {useNavigation} from '@react-navigation/native';
-import React from 'react';
-import {Platform, Pressable, StyleSheet, View} from 'react-native';
+import React, {useEffect, useRef} from 'react';
+import {Animated, Platform, Pressable, StyleSheet, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-function FloatingWriteButton() {
+function FloatingWriteButton({hidden}) {
   const navigation = useNavigation();
 
   const onPress = () => {
     navigation.navigate('write');
   };
 
+  const animation = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(animation, {
+      toValue: hidden ? 1 : 0,
+      useNativeDriver: true,
+    }).start();
+  }, [animation, hidden]);
+
   return (
-    <View Style={styles.wrapper}>
+    <Animated.View
+      Style={[
+        styles.wrapper,
+        {
+          transform: [
+            {
+              translateY: animation.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0, 88],
+              }),
+            },
+          ],
+          opacity: animation.interpolate({
+            inputRange: [0, 1],
+            outputRange: [1, 0],
+          }),
+        },
+      ]}>
       <Pressable
         style={({pressed}) => [
           styles.button,
@@ -23,15 +49,15 @@ function FloatingWriteButton() {
         onPress={onPress}>
         <Icon name="add" size={24} style={styles.icon} />
       </Pressable>
-    </View>
+    </Animated.View>
   );
 }
 
 const styles = StyleSheet.create({
   wrapper: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
+    // position: 'absolute',
+    // bottom: 0,
+    // right: 100,
     width: 56,
     height: 56,
     borderRadius: 28,
@@ -57,8 +83,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: 500,
-    right: 20,
+    bottom: 16,
+    right: 16,
   },
   icon: {
     color: 'white',
