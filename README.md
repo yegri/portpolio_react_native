@@ -26,3 +26,7 @@
 <li> useWindowDimensions </li> 
 <li> filter, reduce, some, includes </li>
 <li> AsyncStorage </li>
+
+<h3> <실행 미리보기> </h3>
+<img src="https://user-images.githubusercontent.com/113401733/200499530-390d5d4d-2cd0-4d8b-9ff7-3cfa9c5acc96.gif">
+
