@@ -18,9 +18,9 @@ function SearchHeader() {
       <TextInput
         style={styles.input}
         placeholder="검색어를 입력하세요"
-        autoFocus
         value={keyword}
         onChangeText={onChangeText}
+        autoFocus
       />
       <Pressable
         style={({pressed}) => [styles.button, pressed && {opacity: 0.5}]}
@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 45,
     fontSize: 18,
-    textDecorationLine: 'none',
   },
   button: {
     marginLeft: 8,

@@ -8,7 +8,7 @@ const messages = {
 
 function EmptySearchResult({type}) {
   return (
-    <View style={StyleSheet.block}>
+    <View style={styles.block}>
       <Text style={styles.text}>{messages[type]}</Text>
     </View>
   );
